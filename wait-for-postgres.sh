@@ -12,8 +12,8 @@ host="$1"
 #cmd="$@"
 cmd="$2"
 
-until psql -h "$host" -U "postgres" -c '\l'; do
-  >&2 echo "Postgres is unavailable - sleeping"
+until psql -h "$host" -U "${PGUSER}" -c '\l'; do
+  >&2 echo "Postgres is unavailable - sleeping ${PGUSER}"
   sleep 1
 done
 
