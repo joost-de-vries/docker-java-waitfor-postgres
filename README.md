@@ -6,9 +6,15 @@ The docker file implements [the solution from the docker-compose documentation](
 
 It uses java 8 and Postgres 9.4. See the Dockerfile.
 
-To use it add a line like the following to `compose.yml`.  
-    entrypoint: /wait-for-postgres.sh db01 bin/play-app-name
+To use it add lines like the following to your `compose.yml`.  
+```
+entrypoint: /wait-for-postgres.sh db01 bin/play-app-name
+environment:
+  - PGPASSWORD=postgres
+  - PGUSER=postgres
+```
 
-The script `wait-for-postgres.sh` expects two arguments: the name of the db host
+The script `wait-for-postgres.sh` expects two arguments: 
+ - the name of the db host
+ - the command to run when the db host is available. If you're using `sbt-native` to build a Play app as a docker image that will be `bin/<play-app-name>`.
 
-See
