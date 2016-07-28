@@ -1,0 +1,1 @@
+docker build -t joostdevries/java-waitfor-postgres:latest .
